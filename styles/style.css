@@ -13,7 +13,6 @@
 .page {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   font-family: var(--main-font), sans-serif;
   font-size: 18px;
@@ -38,6 +37,16 @@
 .header__logo {
   margin-bottom: 20px;
   font-size: var(--logo-size);
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  outline: none;
+}
+.header__logo:focus {
+  outline: none;
+}
+.header__logo:focus-visible {
+  outline: none;
 }
 .header__title {
   font-size: var(--title-size);
@@ -53,16 +62,16 @@
   background-color: var(--accent-color);
   inline-size: var(--block-width);
 }
-.card__title, .card__content, .card__inner {
-  border: var(--border);
-}
 .card__title {
   padding: 4px 10px;
   font-size: 18px;
   font-variation-settings: 'wght' var(--title-font-weight);
+  border: var(--border);
 }
 .card__inner {
   position: relative;
+  border-inline: var(--border);
+  border-block: none;
 }
 .card__logo {
   position: absolute;
@@ -89,32 +98,30 @@
 }
 .card__image {
   display: block;
-  border-inline: none;
-  border-block: 2px solid #000;
   object-fit: cover;
   object-position: center;
   inline-size: 100%;
   aspect-ratio: 1 / 1;
 }
-.filter-two {
+.filter-grayscale {
   filter: grayscale(0.8);
 }
-.filter-three {
+.filter-brightness-saturate {
   filter: brightness(1.5) saturate(2.5);
 }
-.filter-four {
+.filter-sepia {
   filter: sepia(40%);
 }
-.filter-five {
+.filter-invert {
   filter: invert(0.8);
 }
-.filter-six {
+.filter-sepia-contrast {
   filter: sepia(90%) contrast(150%);
 }
-.filter-seven {
+.filter-blur {
   filter: blur(0.7rem);
 }
-.filter-eight {
+.filter-hue-rotate {
   filter: hue-rotate(90deg) opacity(0.6) brightness(0.5);
 }
 .card__content {
@@ -122,6 +129,7 @@
   flex-direction: column;
   gap: 25px;
   padding: 25px;
+  border: var(--border);
 }
 .card__content-text {
   line-height: 21px;
@@ -145,10 +153,13 @@
   font-size: 14px;
   background-color: var(--accent-color);
   transition: box-shadow 0.3s ease;
+  border: var(--border);
 }
 .button:focus {
-  box-shadow: 2px 2px 0 var(--main-color);
   outline: none;
+}
+.button:focus-visible {
+  box-shadow: 2px 2px 0 var(--main-color);
 }
 .button::before {
   content: "";
@@ -165,7 +176,7 @@
 .button:hover::before {
   transform: scaleX(1);
 }
-.button span {
+.button .button__text {
   position: relative;
   color: var(--hover-text);
   mix-blend-mode: difference;
@@ -188,7 +199,7 @@
 .sparks {
   opacity: 0;
 }
-.save__button {
+.main__save-button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -222,7 +233,7 @@
   line-height: 150%;
   white-space: pre-line;
 }
-.save__button-icon-modal {
+.modal__save-button-icon {
   grid-column: 1 / 2;
   width: 39px;
   height: 39px;
@@ -278,17 +289,17 @@ dialog::backdrop {
   transform-origin: center;
 }
 .like-icon.is-liked .heart {
-  animation: scaleHeart 0.3s ease-in 0.1s 1 forwards;
+  animation: scaleHeart 0.3s ease-in 0.1s 1 alternate;
 }
 .like-icon.is-liked .sparks {
-  animation: showSparks 0.3s ease-in 0.3s 1 forwards;
+  animation: showSparks 0.3s ease-in 0.3s 1 alternate;
 }
 
 @media (width <= 375px) {
-  .save__button {
+  .main__save-button {
     flex-direction: column;
   }
-  .save__button-icon {
+  .main__save-button-icon {
     width: 28px;
     height: 28px;
   }
